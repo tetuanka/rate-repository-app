@@ -1,33 +1,37 @@
-{
-  "expo": {
-    "name": "rate-repository-app",
-    "slug": "rate-repository-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
+import 'dotenv/config';
+
+export default {
+    name: "rate-repository-app",
+    extra: {
+        env: process.env.ENV,
+      },
+    slug: "rate-repository-app",
+    version: "1.0.0",
+    orientation: "portrait",
+    icon: "./assets/icon.png",
+    userInterfaceStyle: "light",
+    splash: {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "updates": {
+    updates: {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
+    assetBundlePatterns: [
       "**/*"
     ],
-    "ios": {
+    ios: {
       "supportsTablet": true
     },
-    "android": {
+    android: {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
-    "web": {
+    web: {
       "favicon": "./assets/favicon.png"
     }
   }
-}
+
