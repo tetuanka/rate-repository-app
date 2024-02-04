@@ -4,6 +4,7 @@ export default {
     name: "rate-repository-app",
     extra: {
         env: process.env.ENV,
+        uri: process.env.APOLLO_URI
       },
     slug: "rate-repository-app",
     version: "1.0.0",
