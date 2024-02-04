@@ -23,9 +23,6 @@ const useRepositories = () => {
     }
   }, [data])
 
-//  console.log("data:")
-//  console.log(data)
-//  console.log(error)
 
 
   return { repositories, loading, refetch: fetchRepositories };

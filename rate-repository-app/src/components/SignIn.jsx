@@ -43,8 +43,8 @@ const validationSchema = yup.object().shape({
         const response = await signIn({ username, password });
   
         if (response.data && response.data.authenticate) {
-    //      console.log("data:", response.data);
-    //      console.log(username, password);
+          console.log("data:", response.data);
+          console.log(username, password);
           navigate('/');
         }
       } catch (e) {
