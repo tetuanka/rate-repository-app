@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Pressable, Linking } from 'react-native';
 import Text from './Text';
 
 const styles = StyleSheet.create({
@@ -38,6 +38,15 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 3,
   },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#0366d6',
+    marginStart: 15,
+    marginEnd: 15,
+    marginBottom: 15,
+    padding: 15,
+    borderRadius: 3,
+  },
 });
 
 function formatNumber(number) {
@@ -49,9 +58,9 @@ function formatNumber(number) {
   }
 }
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, showButton }) => {
   return (
-    <View style={styles.container}>
+    <View testID="repositoryItem" style={styles.container}>
       <View style={styles.flexContainer}>
         <View style={styles.flexContainer2}>
           <Image
@@ -61,7 +70,7 @@ const RepositoryItem = ({ item }) => {
         </View>
         <View style={styles.flexContainer2}>
           <Text marginBottom="primary" fontWeight="bold">{item.fullName}</Text>
-          <Text marginBottom="primary">{item.description}</Text>
+          <Text marginBottom="primary" color="textSecondary">{item.description}</Text>
           <View style={styles.box}>
             <Text color='white'>{item.language}</Text>
           </View>
@@ -69,18 +78,23 @@ const RepositoryItem = ({ item }) => {
       </View>
       <View style={styles.flexContainer1}>
         <View style={styles.flexContainer3}>
-          <Text fontWeight="bold" marginBottom="primary">{formatNumber(item.stargazersCount)}</Text><Text>Stars</Text>
+          <Text fontWeight="bold" marginBottom="primary">{formatNumber(item.stargazersCount)}</Text><Text color="textSecondary">Stars</Text>
         </View>
         <View style={styles.flexContainer3}>
-          <Text fontWeight="bold" marginBottom="primary">{formatNumber(item.forksCount)}</Text><Text>Forks</Text>
+          <Text fontWeight="bold" marginBottom="primary">{formatNumber(item.forksCount)}</Text><Text color="textSecondary">Forks</Text>
         </View>
         <View style={styles.flexContainer3}>
-          <Text fontWeight="bold" marginBottom="primary">{item.reviewCount}</Text><Text>Reviews</Text>
+          <Text fontWeight="bold" marginBottom="primary">{item.reviewCount}</Text><Text color="textSecondary">Reviews</Text>
         </View>
         <View style={styles.flexContainer3}>
-          <Text fontWeight="bold" marginBottom="primary">{item.ratingAverage}</Text><Text>Rating</Text>
+          <Text fontWeight="bold" marginBottom="primary">{item.ratingAverage}</Text><Text color="textSecondary">Rating</Text>
         </View>
       </View>
+      {showButton && (
+      <Pressable onPress={() =>  Linking.openURL(item.url)} style={styles.button}>
+          <Text color='white'>{"Open in GitHub"}</Text>
+      </Pressable>
+    )}
     </View>
   );
 };

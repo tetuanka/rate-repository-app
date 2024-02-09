@@ -1,4 +1,5 @@
-import { Text as NativeText, StyleSheet } from 'react-native';
+import { Text as NativeText } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import theme from '../theme';
 
