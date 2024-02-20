@@ -2,7 +2,8 @@ import { useParams } from 'react-router-native';
 import { useQuery } from '@apollo/client';
 import { View, FlatList, StyleSheet } from 'react-native';
 import RepositoryItem from './RepositoryItem';
-import { GET_REPOSITORY, GET_REVIEWS } from '../graphql/queries';
+import { GET_REPOSITORY } from '../graphql/queries';
+import { useReviews } from '../hooks/useReviews';
 import Text from './Text'
 
 
@@ -85,17 +86,14 @@ const ReviewItem = ({ review }) => {
 
 const RepositoryView = () => {
     const { id } = useParams();
-    const { data, error, loading  } = useQuery(GET_REVIEWS, {
-        variables: { repositoryId: id }
-      });
-      if (loading) {
-        return null;
-      }
-      if (error) {
-        console.error("Error fetching review data:", error);
-      }
+    const { reviews, fetchMore } = useReviews(id)
+
     
-      const reviews = data.repository.reviews.edges.map(edge => edge.node);
+    const onEndReach = () => {
+      fetchMore()
+    };
+
+      
     
 
   
@@ -107,6 +105,8 @@ const RepositoryView = () => {
         ItemSeparatorComponent={() => ( <View style={{ height: 10, backgroundColor: 'transparent', }}/> )}
         ListHeaderComponent={() => <RepositoryInfo />}
         ListHeaderComponentStyle={{ marginBottom: 10 }}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     );
   };

@@ -40,14 +40,11 @@ const validationSchema = yup.object().shape({
   });
 
 
-
-
-
   const CreateReview = () => {
     const navigate = useNavigate();
     const [createReview] = useMutation(CREATE_REVIEW);
     const { fetchMore } = useQuery(GET_REVIEWS, {
-        variables: { repositoryId: '' } // Aseta aluksi arvo nulliksi
+        variables: { repositoryId: '' } 
     });
 
     const onSubmit = async (values) => {
